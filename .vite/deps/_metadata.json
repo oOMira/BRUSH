@@ -1,0 +1,55 @@
+{
+  "hash": "78ccc609",
+  "configHash": "372486a5",
+  "lockfileHash": "d205d666",
+  "browserHash": "b061e4de",
+  "optimized": {
+    "react/jsx-dev-runtime": {
+      "src": "../../../BRUSH/node_modules/react/jsx-dev-runtime.js",
+      "file": "react_jsx-dev-runtime.js",
+      "fileHash": "95624183",
+      "needsInterop": true
+    },
+    "react": {
+      "src": "../../../BRUSH/node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "c391e955",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../../BRUSH/node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "9de14d19",
+      "needsInterop": true
+    },
+    "gsap": {
+      "src": "../../../BRUSH/node_modules/gsap/index.js",
+      "file": "gsap.js",
+      "fileHash": "42abfd6a",
+      "needsInterop": false
+    },
+    "@gsap/react": {
+      "src": "../../../BRUSH/node_modules/@gsap/react/src/index.js",
+      "file": "@gsap_react.js",
+      "fileHash": "a341d918",
+      "needsInterop": false
+    },
+    "gsap/ScrollTrigger": {
+      "src": "../../../BRUSH/node_modules/gsap/ScrollTrigger.js",
+      "file": "gsap_ScrollTrigger.js",
+      "fileHash": "bfee4b11",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-4FABRRMD": {
+      "file": "chunk-4FABRRMD.js"
+    },
+    "chunk-WGUZWCYX": {
+      "file": "chunk-WGUZWCYX.js"
+    },
+    "chunk-5WRI5ZAA": {
+      "file": "chunk-5WRI5ZAA.js"
+    }
+  }
+}
