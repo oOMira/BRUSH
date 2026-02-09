@@ -5,6 +5,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import clubbingAdvert from './assets/clubbingAdvert.png';
 import table from './assets/table.png';
 import handheld from './assets/handheld.png';
+import brush from './assets/brush.png';
+import dildo from './assets/dildo.png';
+import whisk from './assets/whisk.png';
+import disco from './assets/disco.png';
+import shaver from './assets/shaver.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -27,11 +32,21 @@ function App() {
     const stretchRef = useRef<gsap.core.Tween | null>(null);
     const joinButtonRef = useRef<HTMLHeadingElement>(null);
     const handheldRef = useRef<HTMLImageElement>(null);
+    const footerRef = useRef<HTMLImageElement>(null);
+    const footerContainerRef = useRef<HTMLImageElement>(null);
     const emojiRefs = useRef<{ [key: number]: HTMLSpanElement | null }>({});
     const familyTlRef = useRef<gsap.core.Timeline | null>(null);
 
+    const images = [dildo, brush, whisk, shaver, disco]
+
     const [tween, setTween] = useState<boolean>(true);
     const [emojis, setEmojis] = useState<Emoji[]>([]);
+
+    const dildoRef = useRef<HTMLImageElement>(null);
+    const whiskRef = useRef<HTMLImageElement>(null);
+    const discoRef = useRef<HTMLImageElement>(null);
+    const brushRef = useRef<HTMLImageElement>(null);
+    const shaverRef = useRef<HTMLImageElement>(null);
 
     const start = "M 0 100 V 50 Q 50 0 100 50 V 100 z";
     const end = "M 0 100 V 0 Q 50 0 100 0 V 100 z";
@@ -170,6 +185,24 @@ function App() {
     useGSAP(() => {
         const tl = gsap.timeline({
             scrollTrigger: {
+                trigger: footerRef.current,
+                start: 'top bottom',
+                end: 'bottom bottom',
+                scrub: 1,
+            }
+        });
+
+        tl.to(
+            footerContainerRef.current,
+            {
+                background: 'rgba(0, 0, 0, 0.7)'
+            }
+        );
+    }, { scope: footerContainerRef });
+
+    useGSAP(() => {
+        const tl = gsap.timeline({
+            scrollTrigger: {
                 trigger: containerRef.current,
                 start: '1px top',
                 end: 'bottom top',
@@ -210,7 +243,7 @@ function App() {
     }, { scope: containerRef });
 
     useGSAP(() => {
-        const tl: gsap.core.Timeline = gsap.timeline({
+        const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: effectContainerRef.current,
                 start: 'top top',
@@ -218,8 +251,7 @@ function App() {
                 pin: true,
                 pinSpacing: true,
                 scrub: 1,
-                markers: false,
-                refreshPriority: 1,
+                markers: true,
             },
         });
 
@@ -247,6 +279,24 @@ function App() {
             duration: 0.4,
             ease: 'power2.in',
         });
+
+        /// MARK: Work here
+
+        const refs = [discoRef, shaverRef, brushRef, dildoRef, whiskRef]
+
+        refs.forEach((ref, pos) => {
+            tl.to(ref.current, {
+                left: pos * 20 + 'vw',
+                duration: 0.2,
+                ease: 'power2.in',
+            }, 0.3);
+
+            tl.to(ref.current, {
+                left: "-40%",
+                duration: 0.2,
+                ease: 'power2.in',
+            }, 0.8);
+        })
 
         const tl2 = gsap.timeline({
             scrollTrigger: {
@@ -279,34 +329,55 @@ function App() {
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: advertContainerRef.current,
-                start: 'center center',
-                end: 'center top',
+                start: 'bottom bottom',
+                end: '+=150%',
                 pin: true,
-                pinSpacing: true,
-                markers: true,
+                pinSpacing: false,
                 scrub: 0,
             }
         });
 
         tl.fromTo(
             joinButtonRef.current,
-            { opacity: 0 },
+            {
+                opacity: 0
+            },
             {
                 opacity: 1,
-                duration: 0.2,
+                duration: 0.1,
                 ease: 'power2.out',
+                onComplete: () => {
+                    if (!joinButtonRef.current) return;
+                    joinButtonRef.current.style.pointerEvents = 'auto';
+                },
             }
         );
 
         tl.to(joinButtonRef.current, {
             opacity: 1,
-            duration: 0.6,
+            duration: 0.45,
+            onComplete: () => {
+                if (!joinButtonRef.current) return;
+                joinButtonRef.current.style.pointerEvents = 'none';
+            },
+            onReverseComplete: () => {
+                if (!joinButtonRef.current) return;
+                joinButtonRef.current.style.pointerEvents = 'none';
+            }
         });
 
         tl.to(joinButtonRef.current, {
             opacity: 0,
-            duration: 0.2,
+            duration: 0.1,
             ease: 'power2.in',
+            onReverseComplete: () => {
+                if (!joinButtonRef.current) return;
+                joinButtonRef.current.style.pointerEvents = 'auto';
+            }
+        });
+
+        tl.to(joinButtonRef.current, {
+            opacity: 0,
         });
     }, { scope: advertContainerRef });
 
@@ -394,6 +465,78 @@ function App() {
                         src={table}
                         alt="table"
                     />
+
+                    <img
+                        ref={brushRef}
+                        style={{
+                            position: 'absolute',
+                            top: '20%',
+                            left: '120%',
+                            width: '20vw',
+                            height: '30vh',
+                            opacity: 1,
+                            objectFit: 'contain'
+                        }}
+                        src={brush}
+                        alt={"brush"}
+                    />
+                    <img
+                        ref={discoRef}
+                        style={{
+                            position: 'absolute',
+                            top: '20%',
+                            left: '120%',
+                            width: '20vw',
+                            height: '30vh',
+                            opacity: 1,
+                            objectFit: 'contain'
+                        }}
+                        src={disco}
+                        alt={"disco"}
+                    />
+                    <img
+                        ref={dildoRef}
+                        style={{
+                            position: 'absolute',
+                            top: '20%',
+                            left: '120%',
+                            width: '20vw',
+                            height: '30vh',
+                            opacity: 1,
+                            objectFit: 'contain'
+                        }}
+                        src={dildo}
+                        alt={"dildo"}
+                    />
+                    <img
+                        ref={whiskRef}
+                        style={{
+                            position: 'absolute',
+                            top: '20%',
+                            left: '120%',
+                            width: '20vw',
+                            height: '30vh',
+                            opacity: 1,
+                            objectFit: 'contain'
+                        }}
+                        src={whisk}
+                        alt={"whisk"}
+                    />
+
+                    <img
+                        ref={shaverRef}
+                        style={{
+                            position: 'absolute',
+                            top: '20%',
+                            left: '120%',
+                            width: '20vw',
+                            height: '30vh',
+                            opacity: 1,
+                            objectFit: 'contain'
+                        }}
+                        src={shaver}
+                        alt={"whisk"}
+                    />
                 </div>
             </div>
 
@@ -412,7 +555,7 @@ function App() {
                         fontWeight: 'bold',
                         opacity: 0,
                         textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)',
-                        zIndex: 1,
+                        zIndex: 5,
                         userSelect: 'none',
                         WebkitUserSelect: 'none',
                         MozUserSelect: 'none',
@@ -426,7 +569,8 @@ function App() {
                     style={{
                         position: 'absolute',
                         bottom: 0,
-                        width: '100vw'
+                        width: '100vw',
+                        zIndex: 1
                     }}
                     src={clubbingAdvert}
                     alt="advert"
@@ -437,6 +581,7 @@ function App() {
                          width: '100vw',
                          height: '100vh',
                          overflow: 'hidden',
+                         zIndex: 2
                      }}>
                     <svg className="transition" viewBox="0 0 100 100" preserveAspectRatio="xMidYMin slice">
                         <defs>
@@ -451,11 +596,24 @@ function App() {
                 </div>
             </div>
 
-            <div style={{
+
+            <div ref={footerContainerRef} style={{
                 position: 'relative',
-                width: '100vw',
-                height: '30vh'
+                height: '150vh',
+                pointerEvents: 'none',
             }}>
+
+                <div ref={footerRef} style={{
+                    marginTop: '-150vh',
+                    position: 'absolute',
+                    height: '30vh',
+                    bottom: '0',
+                    zIndex: 3,
+                    width: '100vw',
+                    backgroundColor: 'black',
+                }}>
+                    <h1>Footer</h1>
+                </div>
             </div>
         </>
     );
