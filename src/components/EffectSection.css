@@ -1,0 +1,37 @@
+.effect-container {
+    height: 100vh;
+}
+
+.effect-inner {
+    height: 100%;
+}
+
+.effect-spacer {
+    height: 80vh;
+}
+
+.handheld-img {
+    position: absolute;
+    height: 22vh;
+    opacity: 1;
+    z-index: 1;
+    left: 50%;
+    bottom: 2%;
+    transform: translate(-50%, 0%);
+}
+
+.table-img {
+    height: 20vh;
+    width: 100vw;
+    opacity: 0;
+}
+
+.floating-img {
+    position: absolute;
+    top: 20%;
+    left: 120%;
+    width: 15vw;
+    height: 30vh;
+    opacity: 1;
+    object-fit: contain;
+}
