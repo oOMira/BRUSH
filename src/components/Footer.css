@@ -1,0 +1,15 @@
+.footer-container {
+    position: relative;
+    height: 150vh;
+    pointer-events: none;
+}
+
+.footer-content {
+    margin-top: -150vh;
+    position: absolute;
+    height: 30vh;
+    bottom: 0;
+    z-index: 3;
+    width: 100vw;
+    background-color: black;
+}
